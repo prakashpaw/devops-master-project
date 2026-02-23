@@ -1,0 +1,40 @@
+Manifest-Version: 1.0
+Created-By: Maven Archiver 3.6.0
+Build-Jdk-Spec: 17
+Specification-Title: Pipeline: AWS Steps
+Specification-Version: 1.45
+Specification-Vendor: Taimos GmbH
+Implementation-Title: Pipeline: AWS Steps
+Implementation-Version: 1.45
+Implementation-Vendor: Taimos GmbH
+Group-Id: de.taimos
+Artifact-Id: pipeline-aws
+Short-Name: pipeline-aws
+Long-Name: Pipeline: AWS Steps
+Url: https://github.com/jenkinsci/pipeline-aws-plugin
+Plugin-Version: 1.45
+Hudson-Version: 2.414.3
+Jenkins-Version: 2.414.3
+Plugin-Dependencies: snakeyaml-api:2.2-111.vc6598e30cc65,aws-java-sdk-ap
+ i-gateway:1.12.671-445.ve02f9b_558f2e,aws-java-sdk-cloudformation:1.12.
+ 671-445.ve02f9b_558f2e,aws-java-sdk-cloudfront:1.12.671-445.ve02f9b_558
+ f2e,aws-java-sdk-codedeploy:1.12.671-445.ve02f9b_558f2e,aws-java-sdk-ec
+ 2:1.12.671-445.ve02f9b_558f2e,aws-java-sdk-ecr:1.12.671-445.ve02f9b_558
+ f2e,aws-java-sdk-elasticbeanstalk:1.12.671-445.ve02f9b_558f2e,aws-java-
+ sdk-elasticloadbalancingv2:1.12.671-445.ve02f9b_558f2e,aws-java-sdk-iam
+ :1.12.671-445.ve02f9b_558f2e,aws-java-sdk-lambda:1.12.671-445.ve02f9b_5
+ 58f2e,aws-java-sdk-organizations:1.12.671-445.ve02f9b_558f2e,aws-java-s
+ dk-sns:1.12.671-445.ve02f9b_558f2e,workflow-step-api:657.v03b_e8115821b
+ _,aws-credentials:218.v1b_e9466ec5da_,credentials:1319.v7eb_51b_3a_c97b
+ _,plain-credentials:179.vc5cb_98f6db_38,script-security:1326.vdb_c154de
+ 8669,structs:337.v1b_04ea_4df7c8
+Plugin-Developers: Thorsten Hoeger:hoegertn:thorsten.hoeger@taimos.de
+Plugin-License-Name: The Apache Software License, Version 2.0
+Plugin-License-Url: http://www.apache.org/licenses/LICENSE-2.0.txt
+Plugin-ScmConnection: scm:git:https://github.com/jenkinsci/pipeline-aws-
+ plugin.git
+Plugin-ScmTag: pipeline-aws-1.45
+Plugin-ScmUrl: https://github.com/jenkinsci/pipeline-aws-plugin
+Plugin-GitHash: 08e70552b6452dbc6c9549606ffa81d033d2f26c
+Implementation-Build: 08e70552b6452dbc6c9549606ffa81d033d2f26c
+

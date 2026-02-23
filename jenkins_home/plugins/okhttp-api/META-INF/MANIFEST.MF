@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Created-By: Maven Archiver 3.6.0
+Build-Jdk-Spec: 17
+Specification-Title: OkHttp Plugin
+Specification-Version: 4.12
+Implementation-Title: OkHttp Plugin
+Implementation-Version: 4.12.0-195.vc02552c04ffd
+Group-Id: io.jenkins.plugins
+Artifact-Id: okhttp-api
+Short-Name: okhttp-api
+Long-Name: OkHttp Plugin
+Url: https://github.com/jenkinsci/okhttp-api-plugin
+Plugin-Version: 4.12.0-195.vc02552c04ffd
+Hudson-Version: 2.479.1
+Jenkins-Version: 2.479.1
+Plugin-Developers: 
+Support-Dynamic-Loading: true
+Plugin-License-Name: The MIT License (MIT)
+Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmConnection: scm:git:https://github.com/jenkinsci/okhttp-api-pl
+ ugin.git
+Plugin-ScmTag: c02552c04ffd43dd0dfaef3c3cdd00b400648e2f
+Plugin-ScmUrl: https://github.com/jenkinsci/okhttp-api-plugin
+Implementation-Build: c02552c04ffd43dd0dfaef3c3cdd00b400648e2f
+

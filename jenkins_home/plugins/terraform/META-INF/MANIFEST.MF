@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Long-Name: Terraform Plugin
+Plugin-Developers: David Pires:dpires:david.pires@gmail.com
+Group-Id: org.jenkins-ci.plugins
+Extension-Name: terraform
+Plugin-Version: 1.0.10
+Jenkins-Version: 1.580
+Url: https://wiki.jenkins-ci.org/display/JENKINS/Terraform+Plugin
+Short-Name: terraform
+

@@ -1,0 +1,32 @@
+Manifest-Version: 1.0
+Created-By: Maven Archiver 3.6.5
+Java-Version: 17
+Build-Jdk-Spec: 17
+Specification-Title: Pipeline: REST API Plugin
+Specification-Version: 2.39
+Implementation-Title: Pipeline: REST API Plugin
+Implementation-Version: 2.39
+Group-Id: org.jenkins-ci.plugins.pipeline-stage-view
+Artifact-Id: pipeline-rest-api
+Short-Name: pipeline-rest-api
+Long-Name: Pipeline: REST API Plugin
+Url: https://github.com/jenkinsci/pipeline-stage-view-plugin/blob/master
+ /rest-api/README.md
+Plugin-Version: 2.39
+Hudson-Version: 2.479.1
+Jenkins-Version: 2.479.1
+Plugin-Dependencies: commons-lang3-api:3.17.0-84.vb_b_938040b_078,workfl
+ ow-api:1363.v03f731255494,workflow-job:1505.vea_4b_20a_4a_495,workflow-
+ step-api:686.v603d058a_e148,workflow-support:946.v2a_79d8a_4b_e14,jacks
+ on2-api:2.17.0-389.va_5c7e45cd806,pipeline-graph-analysis:231.v56354571
+ a_da_0,pipeline-input-step:513.v7eb_fe7e2c0fc,pipeline-stage-step:312.v
+ 8cd10304c27a_
+Plugin-Developers: 
+Plugin-License-Name: MIT License
+Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmConnection: scm:git:https://github.com/jenkinsci/pipeline-stag
+ e-view-plugin.git
+Plugin-ScmTag: pipeline-stage-view-2.39
+Plugin-ScmUrl: https://github.com/jenkinsci/pipeline-stage-view-plugin
+Implementation-Build: 874874a7151b9228942cc6e3433300d98400177d
+

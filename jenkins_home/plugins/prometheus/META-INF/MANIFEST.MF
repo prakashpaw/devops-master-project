@@ -1,0 +1,29 @@
+Manifest-Version: 1.0
+Created-By: Maven Archiver 3.6.4
+Build-Jdk-Spec: 21
+Specification-Title: Prometheus metrics plugin
+Specification-Version: 0.0
+Implementation-Title: Prometheus metrics plugin
+Implementation-Version: 852.v317db_5d17a_b_0
+Group-Id: org.jenkins-ci.plugins
+Artifact-Id: prometheus
+Short-Name: prometheus
+Long-Name: Prometheus metrics plugin
+Url: https://github.com/jenkinsci/prometheus-plugin
+Plugin-Version: 852.v317db_5d17a_b_0
+Hudson-Version: 2.479.3
+Jenkins-Version: 2.479.3
+Plugin-Dependencies: commons-lang3-api:3.17.0-87.v5cf526e63b_8b_,coverag
+ e:2.7.0;resolution:=optional,pipeline-rest-api:2.38,cloudbees-disk-usag
+ e-simple:241.v0ea_d9a_a_96ee8;resolution:=optional,junit:1335.v6b_a_a_e
+ 18534e1,metrics:4.2.32-476.v5042e1c1edd7
+Plugin-Developers: :Waschndolos:
+Support-Dynamic-Loading: false
+Plugin-License-Name: Apache License, Version 2.0
+Plugin-License-Url: http://www.apache.org/licenses/LICENSE-2.0.txt
+Plugin-ScmConnection: scm:git:https://github.com/jenkinsci/prometheus-pl
+ ugin.git
+Plugin-ScmTag: 317db5d17ab09b19206d693ba6d0c1a5e2ce0b07
+Plugin-ScmUrl: https://github.com/jenkinsci/prometheus-plugin
+Implementation-Build: 317db5d17ab09b19206d693ba6d0c1a5e2ce0b07
+
