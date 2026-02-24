@@ -2,12 +2,12 @@ pipeline {
     agent any
 
     tools {
-        // Keep Maven here because it's managed by Jenkins
-        maven 'maven' 
-        // We removed 'terraform' from here because it's now a system binary
+        // This 'maven' name must match exactly what you configured in Manage Jenkins -> Tools
+        maven 'maven'
     }
 
     environment {
+        // Use the ID you set in Jenkins Credentials
         AWS_ID = 'aws-creds'
         DOCKER_HUB_USER = "pawarpr"
         APP_NAME = "devops-java-app"
@@ -23,6 +23,7 @@ pipeline {
         stage('Build & Test') {
             steps {
                 dir('java-app') {
+                    // Compiles the Java code and creates the JAR file
                     sh 'mvn clean package'
                 }
             }
@@ -32,7 +33,7 @@ pipeline {
             steps {
                 dir('java-app') {
                     script {
-                        // This uses the /var/run/docker.sock permission we set
+                        // Builds the image using the host's Docker engine via the socket mount
                         sh "docker build -t ${DOCKER_HUB_USER}/${APP_NAME}:latest ."
                     }
                 }
@@ -43,7 +44,7 @@ pipeline {
             steps {
                 withAWS(credentials: "${AWS_ID}", region: 'us-east-1') {
                     dir('terraform') {
-                        // This will now use /usr/bin/terraform
+                        // Using the system-installed terraform binary we added to /usr/bin
                         sh 'terraform init'
                         sh 'terraform plan -out=tfplan'
                     }
@@ -64,6 +65,7 @@ pipeline {
         stage('Deploy to AWS EC2') {
             steps {
                 script {
+                    // MATCHED: fetching 'instance_public_ip' to match your main.tf output
                     def instanceIp = sh(script: "cd terraform && terraform output -raw instance_public_ip", returnStdout: true).trim()
                     echo "SUCCESS: Your infrastructure is live at http://${instanceIp}:8080"
                 }
@@ -75,9 +77,10 @@ pipeline {
         always {
             script {
                 try {
+                    // Cleans the workspace after build to keep your Ubuntu host storage clear
                     cleanWs()
                 } catch (Exception e) {
-                    echo "Cleanup skipped: Workspace not found."
+                    echo "Cleanup skipped: Workspace folder not available."
                 }
             }
         }
