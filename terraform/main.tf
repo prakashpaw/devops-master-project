@@ -32,16 +32,19 @@ resource "aws_instance" "app_server" {
   vpc_security_group_ids = [aws_security_group.project_sg.id]
   key_name      = "RealDevopskey"
 
-  # This script runs automatically when the instance starts
+  # Adding -y and ensuring the shell is specified correctly
   user_data = <<-EOF
               #!/bin/bash
-              sudo apt-get update
-              sudo apt-get install -y docker.io
-              sudo systemctl start docker
-              sudo systemctl enable docker
-              # Run your specific docker image
-              sudo docker run -d -p 8080:8080 pawarpr/devops-java-app:latest
+              set -e
+              apt-get update -y
+              apt-get install -y docker.io
+              systemctl start docker
+              systemctl enable docker
+              docker run -d -p 8080:8080 pawarpr/devops-java-app:latest
               EOF
+
+  # This forces the instance to recreate if the user_data changes
+  user_data_replace_on_change = true
 
   tags = {
     Name = "DevOps-Project-Instance"
