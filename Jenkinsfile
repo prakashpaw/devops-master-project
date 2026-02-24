@@ -7,8 +7,11 @@ pipeline {
     }
 
     environment {
-        // Use the ID you set in Jenkins Credentials
+        // IDs for your saved Credentials in Jenkins
         AWS_ID = 'aws-creds'
+        DOCKER_HUB_CREDS_ID = 'docker-hub-creds' 
+        
+        // Docker Hub details
         DOCKER_HUB_USER = "pawarpr"
         APP_NAME = "devops-java-app"
     }
@@ -23,7 +26,7 @@ pipeline {
         stage('Build & Test') {
             steps {
                 dir('java-app') {
-                    // Compiles the Java code and creates the JAR file
+                    // Compiles Java code and creates the JAR
                     sh 'mvn clean package'
                 }
             }
@@ -33,8 +36,20 @@ pipeline {
             steps {
                 dir('java-app') {
                     script {
-                        // Builds the image using the host's Docker engine via the socket mount
+                        // Build the image locally on your Ubuntu host
                         sh "docker build -t ${DOCKER_HUB_USER}/${APP_NAME}:latest ."
+                    }
+                }
+            }
+        }
+
+        stage('Docker Push') {
+            steps {
+                script {
+                    // This is the missing link! Pushes the image to the cloud
+                    withCredentials([usernamePassword(credentialsId: "${DOCKER_HUB_CREDS_ID}", passwordVariable: 'DOCKER_PASS', usernameVariable: 'DOCKER_USER')]) {
+                        sh "echo \$DOCKER_PASS | docker login -u \$DOCKER_USER --password-stdin"
+                        sh "docker push ${DOCKER_HUB_USER}/${APP_NAME}:latest"
                     }
                 }
             }
@@ -44,7 +59,6 @@ pipeline {
             steps {
                 withAWS(credentials: "${AWS_ID}", region: 'us-east-1') {
                     dir('terraform') {
-                        // Using the system-installed terraform binary we added to /usr/bin
                         sh 'terraform init'
                         sh 'terraform plan -out=tfplan'
                     }
@@ -65,7 +79,7 @@ pipeline {
         stage('Deploy to AWS EC2') {
             steps {
                 script {
-                    // MATCHED: fetching 'instance_public_ip' to match your main.tf output
+                    // Fetch the IP from the Terraform state to show in logs
                     def instanceIp = sh(script: "cd terraform && terraform output -raw instance_public_ip", returnStdout: true).trim()
                     echo "SUCCESS: Your infrastructure is live at http://${instanceIp}:8080"
                 }
@@ -77,7 +91,7 @@ pipeline {
         always {
             script {
                 try {
-                    // Cleans the workspace after build to keep your Ubuntu host storage clear
+                    // Keeps your host storage clean
                     cleanWs()
                 } catch (Exception e) {
                     echo "Cleanup skipped: Workspace folder not available."
