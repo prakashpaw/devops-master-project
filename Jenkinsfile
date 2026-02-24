@@ -1,14 +1,13 @@
 pipeline {
     agent any
 
-    // 1. Loading the tools you named in 'Manage Jenkins' -> 'Tools'
     tools {
-        maven 'maven'        // Must match the name in Jenkins Global Tool Configuration
-        terraform 'terraform' // Must match the name in Jenkins Global Tool Configuration
+        // Keep Maven here because it's managed by Jenkins
+        maven 'maven' 
+        // We removed 'terraform' from here because it's now a system binary
     }
 
     environment {
-        // ID of the credentials you created in Jenkins
         AWS_ID = 'aws-creds'
         DOCKER_HUB_USER = "pawarpr"
         APP_NAME = "devops-java-app"
@@ -29,11 +28,11 @@ pipeline {
             }
         }
 
-        stage('Docker Build & Push') {
+        stage('Docker Build') {
             steps {
                 dir('java-app') {
                     script {
-                        // Uses the host's docker engine via the mounted socket
+                        // This uses the /var/run/docker.sock permission we set
                         sh "docker build -t ${DOCKER_HUB_USER}/${APP_NAME}:latest ."
                     }
                 }
@@ -42,9 +41,9 @@ pipeline {
 
         stage('Terraform Plan') {
             steps {
-                // 2. Wrap in withAWS so Terraform can authenticate
                 withAWS(credentials: "${AWS_ID}", region: 'us-east-1') {
                     dir('terraform') {
+                        // This will now use /usr/bin/terraform
                         sh 'terraform init'
                         sh 'terraform plan -out=tfplan'
                     }
@@ -65,12 +64,8 @@ pipeline {
         stage('Deploy to AWS EC2') {
             steps {
                 script {
-                    // Capture the IP from Terraform output
                     def instanceIp = sh(script: "cd terraform && terraform output -raw instance_public_ip", returnStdout: true).trim()
-                    echo "Infrastructure is live at: ${instanceIp}"
-                    
-                    // Note: To run the container on the EC2, you'll need SSH keys configured
-                    // echo "Future step: ssh ubuntu@${instanceIp} 'docker run...'"
+                    echo "SUCCESS: Your infrastructure is live at http://${instanceIp}:8080"
                 }
             }
         }
@@ -78,7 +73,13 @@ pipeline {
 
     post {
         always {
-            cleanWs()
+            script {
+                try {
+                    cleanWs()
+                } catch (Exception e) {
+                    echo "Cleanup skipped: Workspace not found."
+                }
+            }
         }
     }
 }

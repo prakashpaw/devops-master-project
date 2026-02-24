@@ -1,0 +1,18 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<org.jenkinsci.plugins.terraform.TerraformBuildWrapper_-DescriptorImpl plugin="terraform@1.0.10">
+  <installations>
+    <org.jenkinsci.plugins.terraform.TerraformInstallation>
+      <name>terraform</name>
+      <home></home>
+      <properties>
+        <hudson.tools.InstallSourceProperty>
+          <installers>
+            <org.jenkinsci.plugins.terraform.TerraformInstaller>
+              <id>60218-darwin-amd64</id>
+            </org.jenkinsci.plugins.terraform.TerraformInstaller>
+          </installers>
+        </hudson.tools.InstallSourceProperty>
+      </properties>
+    </org.jenkinsci.plugins.terraform.TerraformInstallation>
+  </installations>
+</org.jenkinsci.plugins.terraform.TerraformBuildWrapper_-DescriptorImpl>

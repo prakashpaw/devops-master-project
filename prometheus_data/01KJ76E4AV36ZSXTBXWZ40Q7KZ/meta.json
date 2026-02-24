@@ -1,0 +1,18 @@
+{
+	"ulid": "01KJ76E4AV36ZSXTBXWZ40Q7KZ",
+	"minTime": 1771837585830,
+	"maxTime": 1771840800000,
+	"stats": {
+		"numSamples": 175135,
+		"numFloatSamples": 175135,
+		"numSeries": 816,
+		"numChunks": 826
+	},
+	"compaction": {
+		"level": 1,
+		"sources": [
+			"01KJ76E4AV36ZSXTBXWZ40Q7KZ"
+		]
+	},
+	"version": 1
+}

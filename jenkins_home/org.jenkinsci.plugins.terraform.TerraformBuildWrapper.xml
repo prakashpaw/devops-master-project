@@ -3,16 +3,8 @@
   <installations>
     <org.jenkinsci.plugins.terraform.TerraformInstallation>
       <name>terraform</name>
-      <home></home>
-      <properties>
-        <hudson.tools.InstallSourceProperty>
-          <installers>
-            <org.jenkinsci.plugins.terraform.TerraformInstaller>
-              <id>60218-darwin-amd64</id>
-            </org.jenkinsci.plugins.terraform.TerraformInstaller>
-          </installers>
-        </hudson.tools.InstallSourceProperty>
-      </properties>
+      <home>/usr/bin</home>
+      <properties/>
     </org.jenkinsci.plugins.terraform.TerraformInstallation>
   </installations>
 </org.jenkinsci.plugins.terraform.TerraformBuildWrapper_-DescriptorImpl>

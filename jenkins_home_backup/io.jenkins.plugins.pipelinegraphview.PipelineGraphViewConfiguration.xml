@@ -1,0 +1,7 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<io.jenkins.plugins.pipelinegraphview.PipelineGraphViewConfiguration plugin="pipeline-graph-view@777.vdeb_113b_b_94da_">
+  <showGraphOnJobPage>false</showGraphOnJobPage>
+  <showStageNames>false</showStageNames>
+  <showStageDurations>false</showStageDurations>
+  <showGraphOnBuildPage>false</showGraphOnBuildPage>
+</io.jenkins.plugins.pipelinegraphview.PipelineGraphViewConfiguration>
