@@ -27,16 +27,23 @@ resource "aws_security_group" "project_sg" {
 
 # 2. Create the EC2 Instance
 resource "aws_instance" "app_server" {
-  ami           = "ami-019715e0d74f695be" # Ubuntu 22.04 LTS AMI (Verify for your region)
+  ami           = "ami-019715e0d74f695be" 
   instance_type = "t3.micro"
   vpc_security_group_ids = [aws_security_group.project_sg.id]
-  key_name      = "RealDevopskey" # Change this to your existing AWS Key Pair name
+  key_name      = "RealDevopskey"
+
+  # This script runs automatically when the instance starts
+  user_data = <<-EOF
+              #!/bin/bash
+              sudo apt-get update
+              sudo apt-get install -y docker.io
+              sudo systemctl start docker
+              sudo systemctl enable docker
+              # Run your specific docker image
+              sudo docker run -d -p 8080:8080 pawarpr/devops-java-app:latest
+              EOF
 
   tags = {
     Name = "DevOps-Project-Instance"
   }
-}
-
-output "instance_public_ip" {
-  value = aws_instance.app_server.public_ip
 }

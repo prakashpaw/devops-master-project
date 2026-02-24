@@ -64,7 +64,7 @@ pipeline {
         stage('Deploy to AWS EC2') {
             steps {
                 script {
-                    def instanceIp = sh(script: "cd terraform && terraform output -raw public_ip", returnStdout: true).trim()
+                    def instanceIp = sh(script: "cd terraform && terraform output -raw instance_public_ip", returnStdout: true).trim()
                     echo "SUCCESS: Your infrastructure is live at http://${instanceIp}:8080"
                 }
             }
